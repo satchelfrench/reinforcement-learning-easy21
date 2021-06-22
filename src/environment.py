@@ -65,7 +65,7 @@ class Easy21:
     hit is a boolean representing the action
     dealer_frist, player_score is the state
     '''
-    def _step(self, dealer_first, player_score, hit):
+    def step(self, dealer_first, player_score, hit):
         if self._terminated:
             # raise GameCompletedError
             return
@@ -74,12 +74,12 @@ class Easy21:
             player_score = self.player1.hit()
             if (player_score > 21 or player_score < 1):
                 self.terminate()
-            return (dealer_first, player_score, self.get_reward())
+            return ((dealer_first, player_score), self.get_reward())
         else:
             while self.get_dealer_score() < 17 and self.get_dealer_score > 0:
                 dealer_score = self.dealer.hit()
             self.terminate()
-            return (dealer_first, player_score, self.get_reward())
+            return ((dealer_first, player_score), self.get_reward())
 
 
 
