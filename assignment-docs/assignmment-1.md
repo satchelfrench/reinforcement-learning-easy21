@@ -2,7 +2,7 @@
 
 ## Objective
 For this first assignment the core objective was to create the game environment for which we will be running our agents in for the remainder of the course.
-The game Easy21 is similar but not identical to the popular card game "Black Jack", and the exact rules for it may be found ![here](https://www.davidsilver.uk/wp-content/uploads/2020/03/Easy21-Johannes.pdf).
+The game Easy21 is similar but not identical to the popular card game "Black Jack", and the exact rules for it may be found [here](https://www.davidsilver.uk/wp-content/uploads/2020/03/Easy21-Johannes.pdf).
 
 For this assignment there are two key files:
 - environment.py
@@ -40,6 +40,12 @@ for i in range(N):
 
 ## Testing
 
-As there is non human interface, this game must be tested to ensure functionality. See the ```/tests``` folder for specific environment testing.!
+As there is non human interface, this game must be tested to ensure functionality. See the ```/tests/test_env.py``` folder for specific environment testing.!
 
-![[Screen Shot 2021-06-21 at 10.58.50 PM.png]]
+To verify everything is running as expected:
+
+```sh
+git clone https://github.com/satchelfrench/reinforcement-learning-easy21
+cd reiforcement-learning-easy21
+python test/test_env.py
+```
