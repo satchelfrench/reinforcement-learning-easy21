@@ -42,20 +42,50 @@ Before diving into the results it makes sense to first consider the expectations
 
 As seen in the figure below, many of these expectations are verified, and the discussion given [here](https://www.loom.com/share/bf46d2fa2d214dfa8d3b46226825bc2a). covers them more in depth.
 
-**Figure 0: Value Function after 500k Iterations (cropped)**
-<img src="./images/assignment1/value-500k-cropped.png" alt="Value function after 500k iterations" width ="400">
-<br />
+<table>
+  <tr>
+    <th><img src="./images/assignment1/value-500k-cropped.png" alt="Value function after 500k iterations" width="500"></th>
+  </tr>
+  <tr>
+    <th>
+      Figure 0: Value Function after 500k Iterations (cropped)
+    </th>
+  </tr>
+</table>
 
-**Figure 1: Value Function after 500k Iterations**
-<img src="./images/assignment1/value-500k.png" alt="Value function after 500k iterations" width ="400">
-<br />
+<table>
+  <tr>
+    <th><img src="./images/assignment1/value-500k.png" alt="Value function after 500k iterations" width ="500">></th>
+  </tr>
+  <tr>
+    <th>
+      Figure 1: Value function after 500k iterations
+    </th>
+  </tr>
+</table>
 
-**Figure 2: Value Function after 50k Iterations**
-<img src="./images/assignment1/value-50k.png" alt="Value function after 50k iterations" width ="400">
-<br />
+<table>
+  <tr>
+    <th><img src="./images/assignment1/value-50k.png" alt="Value function after 50k iterations" width ="500"></th>
+  </tr>
+  <tr>
+    <th>
+      Figure 2: Value function after 50k iterations
+    </th>
+  </tr>
+</table>
 
-**Figure 3: Total cumulative reward after 500k iterations**
-<img src="./images/assignment1/total-reward.png" alt="Total cumulative reward after 500k iterations" width ="400">
+<table>
+  <tr>
+    <th><img src="./images/assignment1/total-reward.png" alt="Total cumulative reward after 500k iterations" width ="500"></th>
+  </tr>
+  <tr>
+    <th>
+      Figure 3: Total cumulative reward after 500k iterations
+    </th>
+  </tr>
+</table>
+
 
 Taking a look at *figure 3*, it becomes obvious that there is an inflection point in the reward (around 50k iterations, where the tangent = 0). From this point the agent mostly wins at a linear rate, signaling that it is not improving much in terms of policy (even though the value function is updating). This is confirmed in *figure 2*, where the value function looks remarkably similar to that of *figure 1*. Though it is noiser, it becomes apparent that the optimal policy woulld likely be obtained by both. We can see this in the policy heatmaps between the iterations. (Will include animations of policy heatmap + value function in future)
 
