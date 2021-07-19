@@ -6,7 +6,7 @@ Handles the random drawing of cards
 def draw_new_card(color=None) -> int:
     def _generate_value() -> int:
         return random.randint(1,10)
-
+ 
     def _generate_color() -> int:
         if color == "black":
             return 1
@@ -29,7 +29,7 @@ class Easy21:
         self.player1 = Player()
         self.dealer = Player()
         self._terminated = False
-        self._state = (self.dealer.score, self.get_player1_score)
+        self._state = (self.get_dealer_score(), self.get_player1_score())
 
     def reset(self):
         self.__init__()
@@ -39,6 +39,9 @@ class Easy21:
 
     def terminate(self):
         self._terminated = True
+
+    def is_terminated(self):
+        return self._terminated
 
     def get_player1_score(self):
         return self.player1.score
