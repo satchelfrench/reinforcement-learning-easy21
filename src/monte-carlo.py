@@ -115,7 +115,7 @@ reward_log = [0]
 '''
 Run for 50000 iterations
 '''
-N = 50000 # num of episodes
+N = 2000000 # num of episodes
 for i in range(1,N):
     e.reset()
     state = e.get_state()
@@ -143,7 +143,7 @@ for d in range(1, 11):
     row = []
     row1 = []
     row2 = []
-    for p in range(-10, 32):
+    for p in range(1, 22):
         state = (d,p)
         if mc.q[state]["value"][0][0] > mc.q[state]["value"][1][0]:
             row.append(mc.q[state]["value"][0][0])
@@ -164,9 +164,14 @@ for d in range(1, 11):
         stick_value = np.vstack((stick_value, row1))
 
 
+# plt.plot(range(0,N), total_reward)
+# plt.title("Total Cumulative Reward")
+# plt.ylabel("Total Reward")
+# plt.xlabel("Timestep")
+# plt.show()
 
 dealer_cards = np.arange(1,11)
-player_total = np.arange(-10,32)
+player_total = np.arange(1,22)
 
 X, Y = np.meshgrid(dealer_cards, player_total) # no idea why to do that
 
@@ -186,3 +191,5 @@ s.plot_surface(X, Y, np.transpose(stick_value), cmap='viridis', ccount=100, rcou
 s.set_title('State-Stick Value Function Q(s,a)')
 
 plt.show()
+
+
