@@ -7,7 +7,7 @@ There are some modifications to the assignments. All handouts can be found in ``
 Below is a checklist of the assignments, a sort of public accountability scoreboard.
 
 - [x] Assignment 1
-- [ ] Assignment 2
+- [x] Assignment 2
 - [ ] Assignment 3
 - [ ] Research Project
 - [ ] Final Project
