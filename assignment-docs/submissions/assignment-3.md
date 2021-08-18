@@ -26,7 +26,7 @@ In practice this is implemented using the backwards backup so that the algorithm
 
 <table>
   <tr>
-    <th><img src="./images/assignment1/mse.png" alt="Mean Squared Error" width ="500"></th>
+    <th><img src="./images/assignment3/mse.png" alt="Mean Squared Error" width ="500"></th>
   </tr>
   <tr>
     <th>
