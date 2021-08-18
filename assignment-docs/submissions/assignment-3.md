@@ -40,22 +40,26 @@ Then for all states and actions the Q values are updated, and the eligibility tr
 
 <table>
   <tr>
-    <tr>
-      <th><img src="./images/assignment3/sarsa-value.png" alt="Sarsa Value" width ="250"></th>
-    </tr>
-    <tr>
-      <th>
-        Figure 2: Sarsa(&lambda;) Value Functions for 70k iterations, &lambda; = 1
-      </th>
-    </tr>
-    <tr>
-      <th><img src="./images/assignment3/sarsa-policy.png" alt="Sarsa Policy" width ="250"></th>
-    </tr>
-    <tr>
-      <th>
-        Figure 3: Sarsa(&lambda;) Policy Map
-      </th>
-    </tr>
+    <td>
+      <tr>
+        <th><img src="./images/assignment3/sarsa-value.png" alt="Sarsa Value" width ="500"></th>
+      </tr>
+      <tr>
+        <th>
+          Figure 2: Sarsa(&lambda;) Value Functions for 70k iterations, &lambda; = 1
+        </th>
+      </tr>
+    </td>
+    <td>
+      <tr>
+        <th><img src="./images/assignment3/sarsa-policy.png" alt="Sarsa Policy" width ="500"></th>
+      </tr>
+      <tr>
+        <th>
+          Figure 3: Sarsa(&lambda;) Policy Map
+        </th>
+      </tr>
+    </td>
   </tr>
 </table>
 
