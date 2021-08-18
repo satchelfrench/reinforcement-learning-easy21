@@ -19,7 +19,7 @@ In practice this is implemented using the backwards backup so that the algorithm
   </tr>
   <tr>
     <th>
-      Figure 1: Value function after 50k iterations
+      Figure 1: Value functions
     </th>
   </tr>
 </table>
@@ -30,7 +30,7 @@ In practice this is implemented using the backwards backup so that the algorithm
   </tr>
   <tr>
     <th>
-      Figure 2: Value function after 50k iterations
+      Figure 2: Mean Squared error against Monte Carlo
     </th>
   </tr>
 </table>
