@@ -2,37 +2,20 @@ import random
 import numpy as np
 from collections import OrderedDict
 
-# THIS IS ACTUALLY TD LEARNING WITHOUT BOOTSTRAPPING!!! 
-# NEEDS TO BE MODIFIED TO BE MONTE CARLO
+'''SARSA Lambda Agent'''
+''' Functional but requires refactor '''
 
-'''
-This is a generic montecarlo agent, it makes no assumptions about state or action space _init_q() must be implemented for the application for the agent to work
-
-This will intialize the q-values for all possible states that may be encountered before learning, it must be implemented prior to running. 
-The function must return an OrderedDict witht the following structure: 
-* After Python 3.7 a regular dict() may be used as well *
-
-def _init_q(self):
-    q = OrderedDict({
-        state: {
-            some_action: some_initial_value,
-            some_other_action: some_initial_value
-        }
-        another_state: {...}
-    })
-
-    return q
-
-'''
-class MonteCarloAgent:
-    def __init__(self):
+class TDSarsaAgent:
+    def __init__(self, gamma=1, lambda_=1):
         self.q = self._init_q()
         self._state_count = self._init_state_count()
         self._returns = {}
+        self.e = self._init_state_count() # should be corrected so there are separated initalizations for q and e, only works for uniform 0 initializations
+        self.GAMMA = gamma
+        self.LAMBDA = lambda_
 
     def _init_q(self) -> OrderedDict:
         raise NotImplementedError
-
     
     def _init_state_count(self):
         '''Creates a counting dictionary for all state, action pairs in Q'''
@@ -45,14 +28,14 @@ class MonteCarloAgent:
         return state_count
 
     
-    def log_return(self, state, action, reward):
+    def log_return(self, state, action, reward, state2, action2):
         '''Stores returns from episodes, along with the corresponding actions and states, increment counters for states and state-action pairs'''
         if state not in self._returns:
-            self._returns[state] = (action, reward)
-        self._state_count[state][action] += 1 # Come up with default
+            self._returns[state] = (action, reward, state2, action2)
+        self._state_count[state][action] += 1 # Count state occurence
+        self.e[state][action] += 1 # Increment eligibility trace
    
 
-    
     def get_state_count(self, state):
         '''Returns the total count for a state across all actions. '''
         count = 0
@@ -63,12 +46,21 @@ class MonteCarloAgent:
     
     def update_value(self):
         '''Updates value function in the direction of the obtianed reward '''
-        for state in self._returns:
-            action = self._returns[state][0]
+        for state, episode in self._returns.items():
+            action, r, state2, action2 = episode
             alpha = 1 / self._state_count[state][action]
-            # i = len(self._returns.keys()) - 1
-            # last = list(self._returns.keys())[i]
-            self.q[state][action] += alpha*(self._returns[state][1] - self.q[state][action]) # do this for both actions?
+
+            # Deal with terminal state S' / Needs refactor
+            try:
+                delta = r + self.GAMMA*self.q[state2][action2] - self.q[state][action]
+            except KeyError:
+                delta = r - self.q[state][action]
+            
+            self.q[state][action] = self.q[state][action] + alpha*delta*self.e[state][action]
+
+        for state in self.e:
+            for action in self.e[state]:
+                self.e[state][action] *= self.GAMMA*self.LAMBDA
 
 
     def policy(self, state, greedy=False) -> int:
@@ -91,6 +83,8 @@ class MonteCarloAgent:
     def reset_returns(self):
         self._returns = {}
 
+    def reset_e(self):
+        self.e = self._init_state_count()
     
     def get_optimal_value(self):
         '''Returns the optimal value function as a 1-D numpy array, typically for graphing.'''

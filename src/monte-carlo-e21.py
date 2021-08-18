@@ -1,5 +1,6 @@
 import os
 import sys
+import pickle
 
 root_dir = os.path.dirname(__file__ )
 src_dir = os.path.join(root_dir, '..')
@@ -41,12 +42,14 @@ if __name__ == "__main__":
             action = mc.policy(state)
             state, reward = e.step(state, action)
             mc.log_return(prev_state, action, reward)
+            mc.update_value()
+            mc.reset_returns()
             print("Prev_State: {}\nAction: {}\nNew_State: {}\nReward: {}".format(prev_state, action, state, reward))
         print("Dealer Score: {}\nPlayer Score: {}".format(e.get_dealer_score(), e.get_player1_score()))
         cum_reward.append(cum_reward[i-1] + reward)
-        mc.update_value()
-        mc.reset_returns()
 
+    with open('MC_Q.pkl', 'wb') as out_file:
+        pickle.dump(mc.q, out_file)
 
     '''
     Visualize Agent Performance
