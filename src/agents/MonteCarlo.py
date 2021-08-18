@@ -66,9 +66,9 @@ class MonteCarloAgent:
         for state in self._returns:
             action = self._returns[state][0]
             alpha = 1 / self._state_count[state][action]
-            # i = len(self._returns.keys()) - 1
-            # last = list(self._returns.keys())[i]
-            self.q[state][action] += alpha*(self._returns[state][1] - self.q[state][action]) # do this for both actions?
+            i = len(self._returns.keys()) - 1
+            last = list(self._returns.keys())[i]
+            self.q[state][action] += alpha*(self._returns[last][1] - self.q[state][action]) # do this for both actions?
 
 
     def policy(self, state, greedy=False) -> int:

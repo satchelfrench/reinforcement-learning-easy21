@@ -44,49 +44,50 @@ if __name__ == "__main__":
 
     mse_errors = []
 
-    for lmbda in np.arange(0,1.1,0.1):
+    # for lmbda in np.arange(0,1.1,0.1):
+    lmbda = 1
         
-        errors = []
+    errors = []
 
-        print("Running with Lambda = {}".format(lmbda))
+    print("Running with Lambda = {}".format(lmbda))
 
-        e = Easy21()
-        agent = Easy21TDSarsa(gamma=1,lambda_=lmbda)
-        cum_reward = [0]
+    e = Easy21()
+    agent = Easy21TDSarsa(gamma=1,lambda_=lmbda)
+    cum_reward = [0]
 
-        ''' 
-        TRAINING LOOOP
-        '''
+    ''' 
+    TRAINING LOOOP
+    '''
 
-        N = 20000 # num of episodes
-        for i in range(1,N):
-            e.reset()
-            agent.reset_e()
-            state = e.get_state()
-            action = agent.policy(state)
-            r = 0
-            # print("Evaluating episode {}...".format(i))
-            while not e.is_terminated():
-                prev_state = state
-                state, reward = e.step(state, action)
-                prev_action = action
-                action = agent.policy(state) if not e.is_terminated() else 1 # If S' is a terminal state
-                r += reward
-                agent.log_return(prev_state, prev_action, reward, state, action)
-                agent.update_value()
-                agent.reset_returns()
-                # print("Prev_State: {}\nAction: {}\nNew_State: {}\nReward: {}".format(prev_state, action, state, reward))
-            # print("Dealer Score: {}\nPlayer Score: {}".format(e.get_dealer_score(), e.get_player1_score()))
-            cum_reward.append(cum_reward[i-1] + r)
-            errors.append(mse(Q, agent.q))
+    N = 70000 # num of episodes
+    for i in range(1,N):
+        e.reset()
+        agent.reset_e()
+        state = e.get_state()
+        action = agent.policy(state)
+        r = 0
+        # print("Evaluating episode {}...".format(i))
+        while not e.is_terminated():
+            prev_state = state
+            state, reward = e.step(state, action)
+            prev_action = action
+            action = agent.policy(state) if not e.is_terminated() else 2 # If S' is a terminal state
+            r += reward
+            agent.log_return(prev_state, prev_action, reward, state, action)
+            agent.update_value()
+            agent.reset_returns()
+            # print("Prev_State: {}\nAction: {}\nNew_State: {}\nReward: {}".format(prev_state, action, state, reward))
+        # print("Dealer Score: {}\nPlayer Score: {}".format(e.get_dealer_score(), e.get_player1_score()))
+        cum_reward.append(cum_reward[i-1] + r)
+        errors.append(mse(Q, agent.q))
 
-        mse_errors.append(errors)
+    mse_errors.append(errors)
 
     # print(len(mse_errors))
     '''
     Visualize Agent Performance
     '''
-    # visualize(agent, cum_reward, N)
+    
     X = range(1,N)
     l = np.arange(0, 1.1, 0.1)
     for idx, curve in enumerate(mse_errors):
@@ -98,4 +99,5 @@ if __name__ == "__main__":
     plt.ylabel("MSE")
     plt.title("Mean Squared Error for Sarsa(λ)")
     plt.show()    
- 
+
+    visualize(agent, cum_reward, N)
