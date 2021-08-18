@@ -8,6 +8,5 @@ Below is a checklist of the assignments, a sort of public accountability scorebo
 
 - [x] Assignment 1
 - [x] Assignment 2
-- [ ] Assignment 3
-- [ ] Research Project
+- [x] Assignment 3
 - [ ] Final Project
