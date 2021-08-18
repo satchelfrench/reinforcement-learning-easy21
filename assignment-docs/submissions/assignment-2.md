@@ -45,7 +45,7 @@ As seen in the figure below, many of these expectations are verified, and the di
 
 <table>
   <tr>
-    <th><img src="./images/assignment1/value-70k.png" alt="Value function after 70k iterations" width ="500"></th>
+    <th><img src="./images/assignment1/mc-70-value.png" alt="Value function after 70k iterations" width ="500"></th>
   </tr>
   <tr>
     <th>
